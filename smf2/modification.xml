@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    Modification file for The Rules
+
+	ATTENTION: If you are trying to install this manually, you should try
+	the package manager.  If it will not work for you, please take a look
+	at the following for information on this format:
+		http://mods.simplemachines.org/docs/manual-install.php
+
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+
+	<id>m4tthall:SMFPredictionLeague</id>
+
+	<version>1.00</version>
+	
+	<file name="$languagedir/ManagePermissions.english.php">
+		<operation>
+			<search position="after"><![CDATA[$txt['permissions_title'] = 'Manage Permissions';]]></search>
+			<add>
+				<![CDATA[
+//Begin SMFPredictionLeague
+$txt['permissionname_pl_play'] = 'Access to Prediction League';
+//End SMFPredictionLeague
+				]]>
+			</add>
+		</operation>
+	</file>
+
+	<file name="$sourcedir/ManagePermissions.php">
+		<operation>
+			<search position="after"><![CDATA['karma_edit' => array(false, 'general', 'moderate_general'),]]></search>
+			<add>
+				<![CDATA[
+			// SMFPredictionLeague Start
+			'pl_play' => array(false, 'general', 'view_basic_info'),
+			// SMFPredictionLeague End
+				]]>
+			</add>
+		</operation>
+
+		<operation>
+			<search position="after"><![CDATA['profile_remote_avatar',]]></search>
+			<add>
+				<![CDATA[
+			// SMFPredictionLeague Start
+			'pl_play' => array(false, 'general', 'view_basic_info'),
+			// SMFPredictionLeague End
+				]]>
+			</add>
+		</operation>
+	</file>
+	
+	<file name="$languagedir/Who.english.php">
+		<operation>
+			<search position="after"><![CDATA[$txt['who_hidden'] = '<em>Nothing, or nothing you can see...</em>';]]></search>
+			<add>
+				<![CDATA[
+//Begin SMFPredictionLeague
+$txt['whoall_SMFPredictionLeague'] = 'Viewing the <a href="' . $scripturl . '?action=SMFPredictionLeague">Prediction League</a>';
+$txt['whoall_SMFPredictionLeague_league_table'] = 'Viewing the <a href="' . $scripturl . '?action=SMFPredictionLeague;sa=league_table">Prediction League Table</a>';
+$txt['whoall_SMFPredictionLeague_predictions'] = 'Viewing the <a href="' . $scripturl . '?action=SMFPredictionLeague;sa=predictions">Prediction League Predictions</a>';
+$txt['whoall_SMFPredictionLeague_teams'] = 'Viewing the <a href="' . $scripturl . '?action=SMFPredictionLeague;sa=teams">Prediction League Teams</a>';
+$txt['whoall_SMFPredictionLeague_user_info'] = 'Viewing the <a href="' . $scripturl . '?action=SMFPredictionLeague;sa=user_info">Prediction League User Info</a>';
+//End SMFPredictionLeague
+				]]>
+			</add>
+		</operation>
+	</file>
+
+		<file name="$languagedir/Errors.english.php">
+		<operation>
+			<search position="after"><![CDATA[global $scripturl, $modSettings;]]></search>
+			<add>
+				<![CDATA[
+// SMFPrediction League Start
+$txt['cannot_pl_main'] = 'You do not have access to Prediction League!';
+$txt['cannot_pl_play'] = 'You do not have have permission to Prediction League';
+$txt['cannot_pl_admin'] = 'You do not have access to Prediction League Admin area';
+// SMFPrediction League End
+				]]>
+			</add>
+		</operation>
+	</file>
+
+	<file name="$languagedir/index.english.php">
+		<operation>
+			<search position="after"><![CDATA[$txt['ajax_in_progress'] = 'Loading...';]]></search>
+			<add>
+				<![CDATA[
+//Begin SMFPredictionLeague
+$txt['SMFPredictionLeague'] = 'Prediction League';
+$txt['pladmin_settings'] = 'Settings';
+$txt['pladmin_fixtures'] = 'Fixtures';
+$txt['pladmin_results'] = 'Results';
+$txt['pladmin_teams'] = 'Teams';
+$txt['pladmin_support'] = 'Support';
+$txt['pladmin_maintenance'] = 'Maintenance';
+//End SMFPredictionLeague
+				]]>
+			</add>
+		</operation>
+	</file>
+	
+	<file name="$sourcedir/Admin.php">
+		<operation>
+            <search position="before"><![CDATA['cache' => array($txt['caching_settings']),
+					),
+				),]]></search>
+            <add><![CDATA[
+				//Begin SMFPredictionLeague
+				'predictionleague' => array(
+					'label' => $txt['SMFPredictionLeague'],
+					'file' => 'SMFPredictionLeagueAdmin.php',
+					'function' => 'SMFPredictionLeagueAdmin',
+					'icon' => 'modifications.gif',
+					'subsections' => array(
+						'settings' => array($txt['pladmin_settings']),
+						'fixtures' => array($txt['pladmin_fixtures']),
+						'results' => array($txt['pladmin_results']),
+						'teams' => array($txt['pladmin_teams']),
+						'maintenance' => array($txt['pladmin_maintenance']),
+						'support' => array($txt['pladmin_support']),
+					),
+				),
+				//End SMFPredictionLeague
+				]]>
+			</add>
+        </operation>
+    </file>
+
+	<file name="$boarddir/index.php">
+		<operation>
+			<search position="after"><![CDATA['search' => array('Search.php', 'PlushSearch1'),]]></search>
+			<add><![CDATA[
+				//Begin SMFPredictionLeague
+				'SMFPredictionLeague' => array('SMFPredictionLeague.php', 'SMFPredictionLeague'),
+				//End SMFPredictionLeague
+			]]></add>
+		</operation>
+	</file>
+
+	<file name="$sourcedir/Subs.php">
+
+		<operation>
+			<search position="before"><![CDATA['show' => allowedTo('calendar_post'),
+					),
+				),
+			),]]></search>
+			<add><![CDATA[
+			//Begin SMFPredictionLeague
+			'SMFPredictionLeague' => array(
+				'title' => $txt['SMFPredictionLeague'],
+				'href' => $scripturl . '?action=SMFPredictionLeague',
+				'show' => true,
+				'sub_buttons' => array(
+				),
+			),
+			//End SMFPredictionLeague
+			]]></add>
+		</operation>
+
+		<operation>
+			<search position="before"><![CDATA[$context['allow_pm'] = allowedTo('pm_read');]]></search>
+			<add><![CDATA[
+	//Begin SMFPredictionLeague
+	$context['allow_pl_play'] = allowedTo('pl_play');
+	//End SMFPredictionLeague
+			]]></add>
+		</operation>
+
+	</file>
+
+</modification>

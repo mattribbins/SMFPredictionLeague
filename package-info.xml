@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<!DOCTYPE package-info SYSTEM "http://www.simplemachines.org/xml/package-info">
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	Package manifest file for The SMFPredictionLeague
+
+	ATTENTION: If you are trying to install this manually, you should try
+	the package manager.  If it will not work for you, please take a look
+	at the following for information on this format:
+		http://mods.simplemachines.org/docs/manual-install.php
+
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
+
+	<id>m4tthall:SMFPredictionLeague</id>
+
+	<name>SMF Prediction League</name>
+
+	<version>1.0.2</version>
+
+	<type>modification</type>
+	
+	<install for="1.0 - 1.99.99">
+		<readme parsebbc="true">smf1/readme.txt</readme>
+		<modification>smf1/modification.xml</modification>
+		
+		<!-- Code to execute -->
+		<code>smf1/installScript.php</code>
+		
+		<!-- SMF1 specific files to copy over  -->
+		<require-file name="smf1/SMFPredictionLeague.php" destination="$sourcedir" />
+	    <require-file name="smf1/SMFPredictionLeague.template.php" destination="$themedir" />
+		<require-file name="smf1/SMFPredictionLeagueAdmin.php" destination="$sourcedir" />
+		<require-file name="smf1/SMFPredictionLeagueAdmin.template.php" destination="$themedir" />
+		<require-file name="smf1/SMFPredictionLeagueShoutboxSend.php" destination="$sourcedir" />
+		<require-file name="smf1/SMFPredictionLeagueShoutboxOutput.php" destination="$sourcedir" />
+		
+		<!-- Everything below is common for all versions, couldn't find a way to have this in section of its own  -->
+		
+		<!-- Team images  -->
+		<require-dir name="images/pl_icons" destination="$imagesdir" />
+		
+		<!-- Scripts -->
+		<require-dir name="scripts/pl_scripts" destination="$themedir/scripts" />
+
+		
+		<!-- Common files to copy over  -->
+		<require-file name="common/SMFPredictionLeagueCommon.template.php" destination="$themedir" />
+		<require-file name="common/SMFPredictionLeagueCommonAdmin.template.php" destination="$themedir" />
+		<require-file name="common/SMFPredictionLeague.english.php" destination="$languagedir" />
+		<require-file name="common/SMFPredictionLeagueAdmin.english.php" destination="$languagedir" />
+		<require-file name="common/SMFPredictionLeagueCommonFuncs.php" destination="$sourcedir" />
+		<require-file name="common/SMFPredictionLeagueCommon.php" destination="$sourcedir" />
+		<require-file name="common/SMFPredictionLeagueCommonAdmin.php" destination="$sourcedir" />		
+		
+		
+	</install>
+-->
+	<!-- Uninstall  -->
+	<uninstall for="1.0 - 1.99.99">
+		<modification reverse="true">smf1/modification.xml</modification>
+		
+		<!-- Code to execute  -->
+		<code>smf1/uninstallScript.php</code>
+
+		<!-- Files to remove  -->
+		<remove-file name="$sourcedir/SMFPredictionLeague.php" />
+	    <remove-file name="$themedir/SMFPredictionLeague.template.php" />
+		<remove-file name="$themedir/SMFPredictionLeagueAdmin.template.php" />
+		<remove-file name="$sourcedir/SMFPredictionLeagueAdmin.php" />
+		
+		<!-- Everything below is common for all versions, couldn't find a way to have this in section of its own -->
+		
+		<!-- Team images  -->
+		<remove-dir name="Themes/default/images/pl_icons" />
+		
+		<!-- Scripts -->
+		<remove-dir name="$themedir/scripts/pl_scripts" />
+		
+		<remove-file name="$themedir/SMFPredictionLeagueCommon.template.php" />
+		<remove-file name="$themedir/SMFPredictionLeagueCommonAdmin.template.php" />
+		<remove-file name="$sourcedir/SMFPredictionLeagueCommonFuncs.php" />
+		<remove-file name="$sourcedir/SMFPredictionLeagueCommon.php" />
+		<remove-file name="$sourcedir/SMFPredictionLeagueCommonAdmin.php" />
+		<remove-file name="$sourcedir/SMFPredictionLeagueCommonFuncs.php" />
+		<remove-file name="$languagedir/SMFPredictionLeague.english.php" />
+		<remove-file name="$languagedir/SMFPredictionLeagueAdmin.english.php" />
+		<remove-file name="$sourcedir/SMFPredictionLeagueShoutboxSend.php" />
+		<remove-file name="$sourcedir/SMFPredictionLeagueShoutboxOutput.php" />
+
+	</uninstall>
+	
+	
+	<!-- Install -->
+	<install for="2.0 - 2.99.99">
+		<readme parsebbc="true">smf2/readme.txt</readme>
+		<modification>smf2/modification.xml</modification>
+		
+		<!-- Code to execute -->
+		<code>smf2/installScript.php</code>
+		
+		<!-- SMF2 specific files to copy over -->
+		<require-file name="smf2/SMFPredictionLeague.php" destination="$sourcedir" />
+	    <require-file name="smf2/SMFPredictionLeague.template.php" destination="$themedir" />
+		<require-file name="smf2/SMFPredictionLeagueAdmin.php" destination="$sourcedir" />
+		<require-file name="smf2/SMFPredictionLeagueAdmin.template.php" destination="$themedir" />
+		<require-file name="smf2/SMFPredictionLeagueShoutboxSend.php" destination="$sourcedir" />
+		<require-file name="smf2/SMFPredictionLeagueShoutboxOutput.php" destination="$sourcedir" />
+		
+		<!-- Everything below is common for all versions, couldn't find a way to have this in section of its own -->
+		
+		<!-- Team images -->
+		<require-dir name="images/pl_icons" destination="$imagesdir" />
+		
+		<!-- Scripts -->
+		<require-dir name="scripts/pl_scripts" destination="$themedir/scripts" />
+		
+		<!-- Common files to copy over -->
+		<require-file name="common/SMFPredictionLeagueCommon.template.php" destination="$themedir" />
+		<require-file name="common/SMFPredictionLeagueCommonAdmin.template.php" destination="$themedir" />
+		<require-file name="common/SMFPredictionLeague.english.php" destination="$languagedir" />
+		<require-file name="common/SMFPredictionLeagueAdmin.english.php" destination="$languagedir" />
+		<require-file name="common/SMFPredictionLeagueCommonFuncs.php" destination="$sourcedir" />
+		<require-file name="common/SMFPredictionLeagueCommon.php" destination="$sourcedir" />
+		<require-file name="common/SMFPredictionLeagueCommonAdmin.php" destination="$sourcedir" />
+
+	</install>
+
+	<!-- Uninstall -->
+	<uninstall for="2.0 - 2.99.99">
+		<modification reverse="true">smf2/modification.xml</modification>
+		
+		<!-- Code to execute -->
+		<code>smf2/uninstallScript.php</code>
+
+		<!-- Files to remove -->
+		<remove-file name="$sourcedir/SMFPredictionLeague.php" />
+	    <remove-file name="$themedir/SMFPredictionLeague.template.php" />
+		<remove-file name="$themedir/SMFPredictionLeagueAdmin.template.php" />
+		<remove-file name="$sourcedir/SMFPredictionLeagueAdmin.php" />
+		
+		<!-- Everything below is common for all versions, couldn't find a way to have this in section of its own -->
+		
+		<!-- Team images -->
+		<remove-dir name="$imagesdir/pl_icons" />
+		
+		<!-- Scripts -->
+		<remove-dir name="$themedir/scripts/pl_scripts" />
+
+		<!-- Common Files -->
+		<remove-file name="$themedir/SMFPredictionLeagueCommon.template.php" />
+		<remove-file name="$themedir/SMFPredictionLeagueCommonAdmin.template.php" />
+		<remove-file name="$sourcedir/SMFPredictionLeagueCommonFuncs.php" />
+		<remove-file name="$sourcedir/SMFPredictionLeagueCommon.php" />
+		<remove-file name="$sourcedir/SMFPredictionLeagueCommonAdmin.php" />
+		<remove-file name="$languagedir/SMFPredictionLeague.english.php" />
+		<remove-file name="$languagedir/SMFPredictionLeagueAdmin.english.php" />
+		<remove-file name="$sourcedir/SMFPredictionLeagueShoutboxSend.php" />
+		<remove-file name="$sourcedir/SMFPredictionLeagueShoutboxOutput.php" />
+		
+	</uninstall>
+
+</package-info>

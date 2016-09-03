@@ -1,0 +1,183 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    Modification file for The Rules
+
+	ATTENTION: If you are trying to install this manually, you should try
+	the package manager.  If it will not work for you, please take a look
+	at the following for information on this format:
+		http://mods.simplemachines.org/docs/manual-install.php
+
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+
+	<id>m4tthall:SMFPredictionLeague</id>
+
+	<version>1.00</version>
+	
+	<file name="$sourcedir/ManagePermissions.php">
+		<operation>
+			<search position="before"><![CDATA[
+		'profile_remote_avatar',
+		'profile_remove_own',
+]]></search>
+			<add><![CDATA[
+		// Begin SMFPredictionLeague
+		'pl_main',
+		// End SMFPredictionLeague			
+]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA['pm' => array(]]></search>
+			<add><![CDATA[
+			// Begin SMFPredictionLeague
+			'pl' => array(
+				'pl_main' => false,
+				'pl_play' => false,
+				'pl_admin' => false,
+			),
+			// End SMFPredictionLeague
+]]></add>
+		</operation>
+	</file>	
+	
+	<file name="$languagedir/Errors.english.php">
+		<operation>
+			<search position="after"><![CDATA[?>]]></search>
+			<add><![CDATA[
+// Begin SMFPredictionLeague
+$txt['cannot_pl_main'] = 'You do not have access to Prediction League!';
+$txt['cannot_pl_play'] = 'You do not have have permission to Prediction League';
+$txt['cannot_pl_admin'] = 'You do not have access to Prediction League Admin area';
+// End SMFPredictionLeague
+]]></add>
+		</operation>
+	</file>	
+	<file name="$languagedir/ManagePermissions.english.php">
+		<operation>
+			<search position="after"><![CDATA[?>]]></search>
+			<add><![CDATA[
+// Begin SMFPredictionLeague
+$txt['permissiongroup_pl'] = 'Prediction League';
+$txt['permissionname_pl_main'] = 'Access to Prediction League';
+$txt['permissionname_pl_play'] = 'Allowed to play Prediction League';
+$txt['permissionname_pl_admin'] = 'Admin Access';
+// End SMFPredictionLeague
+]]></add>
+		</operation>
+	</file>
+	<file name="$themedir/index.template.php">
+		<operation>
+            <search position="before"><![CDATA[$current_action = 'home';]]></search>
+            <add><![CDATA[
+	// Begin SMFPredictionLeague
+	if ($context['current_action'] == 'SMFPredictionLeague')
+		$current_action = 'SMFPredictionLeague';
+	// End SMFPredictionLeague
+]]></add>
+        </operation>
+		<operation>
+			<search position="after"><![CDATA[// How about the [search] button?
+	if ($context['allow_search'])]]></search>
+			<add><![CDATA[
+					//Begin SMFPredictionLeague
+					echo ($current_action == 'SMFPredictionLeague' || $context['browser']['is_ie4']) ? '<td class="maintab_active_' . $first . '">&nbsp;</td>' : '' , '
+								<td valign="top" class="maintab_' , $current_action == 'SMFPredictionLeague' ? 'active_back' : 'back' , '">
+								<a href="', $scripturl, '?action=SMFPredictionLeague">' , $txt['SMFPredictionLeague'] , '</a>
+								</td>' , $current_action == 'SMFPredictionLeague' ? '<td class="maintab_active_' . $last . '">&nbsp;</td>' : '';
+					//End SMFPredictionLeague
+				]]>
+			</add>
+		</operation>
+	</file>
+
+	<file name="$languagedir/Who.english.php">
+		<operation>
+			<search position="after"><![CDATA[$txt['who_hidden'] = '<em>Nothing, or nothing you can see...</em>';]]></search>
+			<add>
+				<![CDATA[
+//Begin SMFPredictionLeague
+$txt['whoall_SMFPredictionLeague'] = 'Viewing the <a href="' . $scripturl . '?action=SMFPredictionLeague">Prediction League</a>';
+$txt['whoall_SMFPredictionLeague_league_table'] = 'Viewing the <a href="' . $scripturl . '?action=SMFPredictionLeague;sa=league_table">Prediction League Table</a>';
+$txt['whoall_SMFPredictionLeague_predictions'] = 'Viewing the <a href="' . $scripturl . '?action=SMFPredictionLeague;sa=predictions">Prediction League Predictions</a>';
+$txt['whoall_SMFPredictionLeague_teams'] = 'Viewing the <a href="' . $scripturl . '?action=SMFPredictionLeague;sa=teams">Prediction League Teams</a>';
+$txt['whoall_SMFPredictionLeague_user_info'] = 'Viewing the <a href="' . $scripturl . '?action=SMFPredictionLeague;sa=user_info">Prediction League User Info</a>';
+$txt['whoall_SMFPredictionLeague_statistics'] = 'Viewing the <a href="' . $scripturl . '?action=SMFPredictionLeague;sa=statistics">Prediction League Statistics</a>';
+$txt['whoall_SMFPredictionLeague_team_detail'] = 'Viewing a teams details in the <a href="' . $scripturl . '?action=SMFPredictionLeague">Prediction League</a>';
+//End SMFPredictionLeague
+				]]>
+			</add>
+		</operation>
+	</file>
+
+	<file name="$boarddir/index.php">
+		<operation>
+			<search position="after"><![CDATA['search' => array('Search.php', 'PlushSearch1'),]]></search>
+			<add><![CDATA[
+				//Begin SMFPredictionLeague
+				'SMFPredictionLeague' => array('SMFPredictionLeague.php', 'SMFPredictionLeague'),
+				'SMFPredictionLeague_admin' => array('SMFPredictionLeagueAdmin.php', 'SMFPredictionLeagueAdmin'),
+				//End SMFPredictionLeague
+			]]></add>
+		</operation>
+	</file>
+
+	<file name="$languagedir/index.english.php">
+		<operation>
+			<search position="after"><![CDATA[$txt['ajax_in_progress'] = 'Loading...';]]></search>
+			<add>
+				<![CDATA[
+					//Begin SMFPredictionLeague
+					$txt['SMFPredictionLeague'] = 'Prediction League';
+					$txt['SMFPredictionLeague_admin'] = 'Prediction League Admin';
+					//End SMFPredictionLeague
+				]]>
+			</add>
+		</operation>
+	</file>
+	
+	<file name="$sourcedir/Load.php">
+		<operation>
+            <search position="before"><![CDATA['passwd' => isset($user_settings['passwd']) ? $user_settings['passwd'] : '',]]></search>
+            <add><![CDATA[
+					//Begin SMFPredictionLeague
+					'pl_enabled' => isset($user_settings['pl_enabled']) ? $user_settings['pl_enabled'] : '', //SMFPredictionLeague 
+					//End SMFPredictionLeague
+				]]>
+			</add>
+        </operation>
+    </file>
+	
+	<file name="$sourcedir/Subs.php">
+        <operation>
+            <search position="before"><![CDATA[
+	validateSession();
+]]></search>
+            <add><![CDATA[
+	// Begin SMFPredictionLeague
+	if (allowedTo('pl_admin'))
+	{
+		$context['admin_areas']['SMFPredictionLeague'] = array (
+		    'title' => $txt['SMFPredictionLeague_admin'],
+		    'areas' => array() 
+	    );
+
+		$context['admin_areas']['SMFPredictionLeague']['areas']['pl_admin'] =  '<a href="' . $scripturl . '?action=SMFPredictionLeague_admin">' . $txt['settings'] . '</a>';
+	}
+	// End SMFPredictionLeague
+]]></add>
+        </operation>
+		<operation>
+			<search position="before"><![CDATA[
+	$context['allow_memberlist'] = allowedTo('view_mlist');
+]]></search>
+			<add><![CDATA[
+	// Begin SMFPredictionLeague
+	$context['allow_pl'] = allowedTo(array('pl_main', 'pl_play'));
+	$context['allow_pl_admin'] = allowedTo('pl_admin');
+	// End SMFPredictionLeague
+]]></add>
+		</operation>
+	</file>
+</modification>
