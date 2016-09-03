@@ -12,11 +12,11 @@
 
 <package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
 
-	<id>m4tthall:SMFPredictionLeague</id>
+	<id>mattyribbo:SMFPredictionLeague</id>
 
 	<name>SMF Prediction League</name>
 
-	<version>1.0.2</version>
+	<version>1.0.3</version>
 
 	<type>modification</type>
 	

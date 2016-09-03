@@ -12,9 +12,9 @@
 
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 
-	<id>m4tthall:SMFPredictionLeague</id>
+	<id>mattyribbo:SMFPredictionLeague</id>
 
-	<version>1.00</version>
+	<version>1.0.3</version>
 	
 	<file name="$languagedir/ManagePermissions.english.php">
 		<operation>
@@ -106,9 +106,7 @@ $txt['pladmin_maintenance'] = 'Maintenance';
 	
 	<file name="$sourcedir/Admin.php">
 		<operation>
-            <search position="before"><![CDATA['cache' => array($txt['caching_settings']),
-					),
-				),]]></search>
+            <search position="after"><![CDATA['current_theme' => array(]]></search>
             <add><![CDATA[
 				//Begin SMFPredictionLeague
 				'predictionleague' => array(
@@ -145,10 +143,7 @@ $txt['pladmin_maintenance'] = 'Maintenance';
 	<file name="$sourcedir/Subs.php">
 
 		<operation>
-			<search position="before"><![CDATA['show' => allowedTo('calendar_post'),
-					),
-				),
-			),]]></search>
+			<search position="after"><![CDATA['calendar' => array(]]></search>
 			<add><![CDATA[
 			//Begin SMFPredictionLeague
 			'SMFPredictionLeague' => array(
